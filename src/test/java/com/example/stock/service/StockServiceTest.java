@@ -65,6 +65,4 @@ class StockServiceTest {
         Stock stock = stockRepository.findById(1L).orElseThrow();
         assertEquals(0L, stock.getQuantity());
     }
-
-
 }
