@@ -1,28 +1,11 @@
-# Getting Started
+# [인프런] 재고시스템으로 알아보는 동시성이슈 해결방법
+[인프런 강의](https://www.inflearn.com/course/%EB%8F%99%EC%8B%9C%EC%84%B1%EC%9D%B4%EC%8A%88-%EC%9E%AC%EA%B3%A0%EC%8B%9C%EC%8A%A4%ED%85%9C)
 
-### Reference Documentation
+## [v1] 동시성 고려되지 않은 재고관리 로직
+ - 메소드에 `@Transactional` 사용하여 DB 트랜잭션 처리
+ - 다중 스레드로 동시에 재고처리시 원하는 결과가 나오지 않는다.
 
-For further reference, please consider the following sections:
-
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/3.4.0/gradle-plugin)
-* [Create an OCI image](https://docs.spring.io/spring-boot/3.4.0/gradle-plugin/packaging-oci-image.html)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/3.4.0/reference/data/sql.html#data.sql.jpa-and-spring-data)
-* [Spring Web](https://docs.spring.io/spring-boot/3.4.0/reference/web/servlet.html)
-
-### Guides
-
-The following guides illustrate how to use some features concretely:
-
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-* [Accessing data with MySQL](https://spring.io/guides/gs/accessing-data-mysql/)
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
-
-### Additional Links
-
-These additional references should also help you:
-
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
-
+## [v2] synchronized로 동시성 제어하기
+  - 메소드에 `synchronized`를 사용하여 동시성 제어
+    - `@Transactional`과 `synchronized`를 같이 사용하면 `@Transactional`의 동작으로 인해 이전과 같은 문제가 발생한다.
+  - `synchronized`의 사용은 같은 프로세스에서만 동시성을 보장하기 때문에 분산 서비스 환경에서는 적합하지 않기에 거의 사용하지 않는다.
